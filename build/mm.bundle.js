@@ -15,14 +15,14 @@
 angular.module('mm', ['ionic', 'mm.core', 'mm.core.comments', 'mm.core.contentlinks', 'mm.core.course', 'mm.core.courses', 'mm.core.fileuploader', 'mm.core.login', 'mm.core.question', 'mm.core.settings', 'mm.core.sharedfiles', 'mm.core.sidemenu', 'mm.core.textviewer', 'mm.core.user', 'mm.addons.calendar', 'mm.addons.competency', 'mm.addons.coursecompletion', 'mm.addons.files', 'mm.addons.frontpage', 'mm.addons.grades', 'mm.addons.messages', 'mm.addons.notes', 'mm.addons.notifications', 'mm.addons.participants', 'mm.addons.pushnotifications', 'mm.addons.remotestyles', 'mm.addons.mod_assign', 'mm.addons.mod_book', 'mm.addons.mod_chat', 'mm.addons.mod_choice', 'mm.addons.mod_folder', 'mm.addons.mod_forum', 'mm.addons.mod_glossary', 'mm.addons.mod_imscp', 'mm.addons.mod_label', 'mm.addons.mod_lti', 'mm.addons.mod_page', 'mm.addons.mod_quiz', 'mm.addons.mod_resource', 'mm.addons.mod_scorm', 'mm.addons.mod_survey', 'mm.addons.mod_url', 'mm.addons.mod_wiki', 'mm.addons.qbehaviour_adaptive', 'mm.addons.qbehaviour_adaptivenopenalty', 'mm.addons.qbehaviour_deferredcbm', 'mm.addons.qbehaviour_deferredfeedback', 'mm.addons.qbehaviour_immediatecbm', 'mm.addons.qbehaviour_immediatefeedback', 'mm.addons.qbehaviour_informationitem', 'mm.addons.qbehaviour_interactive', 'mm.addons.qbehaviour_interactivecountback', 'mm.addons.qbehaviour_manualgraded', 'mm.addons.qtype_calculated', 'mm.addons.qtype_calculatedmulti', 'mm.addons.qtype_calculatedsimple', 'mm.addons.qtype_ddimageortext', 'mm.addons.qtype_ddmarker', 'mm.addons.qtype_ddwtos', 'mm.addons.qtype_description', 'mm.addons.qtype_essay', 'mm.addons.qtype_gapselect', 'mm.addons.qtype_match', 'mm.addons.qtype_multianswer', 'mm.addons.qtype_multichoice', 'mm.addons.qtype_numerical', 'mm.addons.qtype_randomsamatch', 'mm.addons.qtype_shortanswer', 'mm.addons.qtype_truefalse', 'ngCordova', 'angular-md5', 'pascalprecht.translate', 'ngAria', 'oc.lazyLoad',
     'ngIOS9UIWebViewPatch', 'ckeditor'])
 .run(["$ionicPlatform", function($ionicPlatform) {
-	$ionicPlatform.ready(function() {
-		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-			window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-		}
-		if (window.StatusBar) {
-			StatusBar.styleDefault();
-		}
-	});
+   $ionicPlatform.ready(function() {
+      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+         window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      }
+      if (window.StatusBar) {
+         StatusBar.styleDefault();
+      }
+   });
 }]);
 
 angular.module('mm.core', ['pascalprecht.translate'])
@@ -7921,14 +7921,14 @@ angular.module('mm.core.login', [])
 angular.module('mm.core.question', [])
 .constant('mmQuestionComponent', 'mmQuestion')
 .run(["$mmEvents", "mmCoreEventLogin", "mmCoreEventSiteUpdated", "$mmQuestionDelegate", "$mmQuestionBehaviourDelegate", "mmCoreEventRemoteAddonsLoaded", function($mmEvents, mmCoreEventLogin, mmCoreEventSiteUpdated, $mmQuestionDelegate, $mmQuestionBehaviourDelegate,
-			mmCoreEventRemoteAddonsLoaded) {
-	function updateHandlers() {
-		$mmQuestionDelegate.updateQuestionHandlers();
-		$mmQuestionBehaviourDelegate.updateQuestionBehaviourHandlers();
-	}
-	$mmEvents.on(mmCoreEventLogin, updateHandlers);
-	$mmEvents.on(mmCoreEventSiteUpdated, updateHandlers);
-	$mmEvents.on(mmCoreEventRemoteAddonsLoaded, updateHandlers);
+         mmCoreEventRemoteAddonsLoaded) {
+   function updateHandlers() {
+      $mmQuestionDelegate.updateQuestionHandlers();
+      $mmQuestionBehaviourDelegate.updateQuestionBehaviourHandlers();
+   }
+   $mmEvents.on(mmCoreEventLogin, updateHandlers);
+   $mmEvents.on(mmCoreEventSiteUpdated, updateHandlers);
+   $mmEvents.on(mmCoreEventRemoteAddonsLoaded, updateHandlers);
 }]);
 
 angular.module('mm.core.settings', [])
@@ -10105,7 +10105,7 @@ angular.module('mm.core.courses')
 angular.module('mm.core.courses')
 .controller('mmCoursesSearchCtrl', ["$scope", "$mmCourses", "$q", "$mmUtil", function($scope, $mmCourses, $q, $mmUtil) {
     var page = 0,
-    	currentSearch = '';
+      currentSearch = '';
     $scope.searchText = '';
     function searchCourses(refresh) {
         if (refresh) {
@@ -10133,13 +10133,13 @@ angular.module('mm.core.courses')
     $scope.search = function(text) {
         currentSearch = text;
         $scope.courses = undefined;
-    	var modal = $mmUtil.showModalLoading('mm.core.searching', true);
-    	searchCourses(true).finally(function() {
+      var modal = $mmUtil.showModalLoading('mm.core.searching', true);
+      searchCourses(true).finally(function() {
             modal.dismiss();
-    	});
+      });
     };
     $scope.loadMoreResults = function() {
-    	searchCourses();
+      searchCourses();
     };
 }]);
 
@@ -15154,55 +15154,55 @@ angular.module('mm.addons.qbehaviour_adaptive', ['mm.core'])
 angular.module('mm.addons.qbehaviour_adaptivenopenalty', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourAdaptiveNoPenalty', 'adaptivenopenalty',
-    			'$mmaQbehaviourAdaptiveNoPenaltyHandler');
+            '$mmaQbehaviourAdaptiveNoPenaltyHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_deferredcbm', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourDeferredCBM', 'deferredcbm',
-    			'$mmaQbehaviourDeferredCBMHandler');
+            '$mmaQbehaviourDeferredCBMHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_deferredfeedback', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourDeferredFeedback', 'deferredfeedback',
-    			'$mmaQbehaviourDeferredFeedbackHandler');
+            '$mmaQbehaviourDeferredFeedbackHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_immediatecbm', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourImmediateCBM', 'immediatecbm',
-    			'$mmaQbehaviourImmediateCBMHandler');
+            '$mmaQbehaviourImmediateCBMHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_immediatefeedback', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourImmediateFeedback', 'immediatefeedback',
-    			'$mmaQbehaviourImmediateFeedbackHandler');
+            '$mmaQbehaviourImmediateFeedbackHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_informationitem', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourInformationItem', 'informationitem',
-    			'$mmaQbehaviourInformationItemHandler');
+            '$mmaQbehaviourInformationItemHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_interactive', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourInteractive', 'interactive',
-    			'$mmaQbehaviourInteractiveHandler');
+            '$mmaQbehaviourInteractiveHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_interactivecountback', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourInteractiveCountback', 'interactivecountback',
-    			'$mmaQbehaviourInteractiveCountbackHandler');
+            '$mmaQbehaviourInteractiveCountbackHandler');
 }]);
 
 angular.module('mm.addons.qbehaviour_manualgraded', ['mm.core'])
 .config(["$mmQuestionBehaviourDelegateProvider", function($mmQuestionBehaviourDelegateProvider) {
     $mmQuestionBehaviourDelegateProvider.registerHandler('mmaQbehaviourManualGraded', 'manualgraded',
-    			'$mmaQbehaviourManualGradedHandler');
+            '$mmaQbehaviourManualGradedHandler');
 }]);
 
 angular.module('mm.addons.qtype_calculated', ['mm.core'])
@@ -15213,13 +15213,13 @@ angular.module('mm.addons.qtype_calculated', ['mm.core'])
 angular.module('mm.addons.qtype_calculatedmulti', ['mm.core'])
 .config(["$mmQuestionDelegateProvider", function($mmQuestionDelegateProvider) {
     $mmQuestionDelegateProvider.registerHandler('mmaQtypeCalculatedMulti', 'qtype_calculatedmulti',
-    												'$mmaQtypeCalculatedMultiHandler');
+                                       '$mmaQtypeCalculatedMultiHandler');
 }]);
 
 angular.module('mm.addons.qtype_calculatedsimple', ['mm.core'])
 .config(["$mmQuestionDelegateProvider", function($mmQuestionDelegateProvider) {
     $mmQuestionDelegateProvider.registerHandler('mmaQtypeCalculatedSimple', 'qtype_calculatedsimple',
-    												'$mmaQtypeCalculatedSimpleHandler');
+                                       '$mmaQtypeCalculatedSimpleHandler');
 }]);
 
 angular.module('mm.addons.qtype_ddimageortext', ['mm.core'])
@@ -19556,7 +19556,7 @@ angular.module('mm.addons.qbehaviour_manualgraded')
 
 angular.module('mm.addons.qtype_calculated')
 .directive('mmaQtypeCalculated', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeCalculated');
+   $log = $log.getInstance('mmaQtypeCalculated');
     return {
         restrict: 'A',
         priority: 100,
@@ -19590,13 +19590,13 @@ angular.module('mm.addons.qtype_calculated')
 
 angular.module('mm.addons.qtype_calculatedmulti')
 .directive('mmaQtypeCalculatedMulti', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeCalculatedMulti');
+   $log = $log.getInstance('mmaQtypeCalculatedMulti');
     return {
         restrict: 'A',
         priority: 100,
         templateUrl: 'addons/qtype/multichoice/template.html',
         link: function(scope) {
-        	$mmQuestionHelper.multiChoiceDirective(scope, $log);
+         $mmQuestionHelper.multiChoiceDirective(scope, $log);
         }
     };
 }]);
@@ -19624,7 +19624,7 @@ angular.module('mm.addons.qtype_calculatedmulti')
 
 angular.module('mm.addons.qtype_calculatedsimple')
 .directive('mmaQtypeCalculatedSimple', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeCalculatedSimple');
+   $log = $log.getInstance('mmaQtypeCalculatedSimple');
     return {
         restrict: 'A',
         priority: 100,
@@ -19658,7 +19658,7 @@ angular.module('mm.addons.qtype_calculatedsimple')
 
 angular.module('mm.addons.qtype_ddimageortext')
 .directive('mmaQtypeDdimageortext', ["$log", "$mmQuestionHelper", "$mmaQtypeDdimageortextRender", "$timeout", "$mmUtil", function($log, $mmQuestionHelper, $mmaQtypeDdimageortextRender, $timeout, $mmUtil) {
-	$log = $log.getInstance('mmaQtypeDdimageortext');
+   $log = $log.getInstance('mmaQtypeDdimageortext');
     return {
         restrict: 'A',
         priority: 100,
@@ -20791,7 +20791,7 @@ angular.module('mm.addons.qtype_ddmarker')
 }]);
 angular.module('mm.addons.qtype_ddwtos')
 .directive('mmaQtypeDdwtos', ["$log", "$mmQuestionHelper", "$mmaQtypeDdwtosRender", "$timeout", "$mmUtil", function($log, $mmQuestionHelper, $mmaQtypeDdwtosRender, $timeout, $mmUtil) {
-	$log = $log.getInstance('mmaQtypeDdwtos');
+   $log = $log.getInstance('mmaQtypeDdwtos');
     return {
         restrict: 'A',
         priority: 100,
@@ -21185,7 +21185,7 @@ angular.module('mm.addons.qtype_ddwtos')
 }]);
 angular.module('mm.addons.qtype_description')
 .directive('mmaQtypeDescription', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeDescription');
+   $log = $log.getInstance('mmaQtypeDescription');
     return {
         restrict: 'A',
         priority: 100,
@@ -21226,7 +21226,7 @@ angular.module('mm.addons.qtype_description')
 
 angular.module('mm.addons.qtype_essay')
 .directive('mmaQtypeEssay', ["$log", "$mmQuestionHelper", "$mmText", "$mmUtil", function($log, $mmQuestionHelper, $mmText, $mmUtil) {
-	$log = $log.getInstance('mmaQtypeEssay');
+   $log = $log.getInstance('mmaQtypeEssay');
     return {
         restrict: 'A',
         priority: 100,
@@ -21306,7 +21306,7 @@ angular.module('mm.addons.qtype_essay')
 
 angular.module('mm.addons.qtype_gapselect')
 .directive('mmaQtypeGapSelect', ["$log", "$mmQuestionHelper", "$mmUtil", function($log, $mmQuestionHelper, $mmUtil) {
-	$log = $log.getInstance('mmaQtypeGapSelect');
+   $log = $log.getInstance('mmaQtypeGapSelect');
     return {
         restrict: 'A',
         priority: 100,
@@ -21375,7 +21375,7 @@ angular.module('mm.addons.qtype_gapselect')
 
 angular.module('mm.addons.qtype_match')
 .directive('mmaQtypeMatch', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeMatch');
+   $log = $log.getInstance('mmaQtypeMatch');
     return {
         restrict: 'A',
         priority: 100,
@@ -21427,7 +21427,7 @@ angular.module('mm.addons.qtype_match')
 
 angular.module('mm.addons.qtype_multianswer')
 .directive('mmaQtypeMultianswer', ["$log", "$mmQuestionHelper", "$mmUtil", function($log, $mmQuestionHelper, $mmUtil) {
-	$log = $log.getInstance('mmaQtypeMultianswer');
+   $log = $log.getInstance('mmaQtypeMultianswer');
     return {
         restrict: 'A',
         priority: 100,
@@ -21506,13 +21506,13 @@ angular.module('mm.addons.qtype_multianswer')
 
 angular.module('mm.addons.qtype_multichoice')
 .directive('mmaQtypeMultichoice', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeMultichoice');
+   $log = $log.getInstance('mmaQtypeMultichoice');
     return {
         restrict: 'A',
         priority: 100,
         templateUrl: 'addons/qtype/multichoice/template.html',
         link: function(scope) {
-        	$mmQuestionHelper.multiChoiceDirective(scope, $log);
+         $mmQuestionHelper.multiChoiceDirective(scope, $log);
         }
     };
 }]);
@@ -21577,7 +21577,7 @@ angular.module('mm.addons.qtype_multichoice')
 
 angular.module('mm.addons.qtype_numerical')
 .directive('mmaQtypeNumerical', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeNumerical');
+   $log = $log.getInstance('mmaQtypeNumerical');
     return {
         restrict: 'A',
         priority: 100,
@@ -21631,7 +21631,7 @@ angular.module('mm.addons.qtype_numerical')
 
 angular.module('mm.addons.qtype_randomsamatch')
 .directive('mmaQtypeRandomSaMatch', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeRandomSaMatch');
+   $log = $log.getInstance('mmaQtypeRandomSaMatch');
     return {
         restrict: 'A',
         priority: 100,
@@ -21665,7 +21665,7 @@ angular.module('mm.addons.qtype_randomsamatch')
 
 angular.module('mm.addons.qtype_shortanswer')
 .directive('mmaQtypeShortAnswer', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeShortAnswer');
+   $log = $log.getInstance('mmaQtypeShortAnswer');
     return {
         restrict: 'A',
         priority: 100,
@@ -21699,13 +21699,13 @@ angular.module('mm.addons.qtype_shortanswer')
 
 angular.module('mm.addons.qtype_truefalse')
 .directive('mmaQtypeTruefalse', ["$log", "$mmQuestionHelper", function($log, $mmQuestionHelper) {
-	$log = $log.getInstance('mmaQtypeTruefalse');
+   $log = $log.getInstance('mmaQtypeTruefalse');
     return {
         restrict: 'A',
         priority: 100,
         templateUrl: 'addons/qtype/multichoice/template.html',
         link: function(scope) {
-        	$mmQuestionHelper.multiChoiceDirective(scope, $log);
+         $mmQuestionHelper.multiChoiceDirective(scope, $log);
         }
     };
 }]);
@@ -37513,7 +37513,7 @@ angular.module('mm.addons.mod_quiz')
 angular.module('mm.core')
 
 .constant('mmCoreConfigConstants', {
-    "app_id" : "com.moodle.moodlemobile",
+    "app_id" : "co.uk.pathwaydirect.mobile",
     "versioncode" : "2014",
     "versionname" : "3.1.2",
     "cache_expiration_time" : 300000,
@@ -37521,8 +37521,8 @@ angular.module('mm.core')
     "languages": {"ar": "عربي", "bg": "Български", "ca": "Català", "cs": "Čeština", "da": "Dansk", "de": "Deutsch","en": "English", "es": "Español", "es-mx": "Español - México", "eu": "Euskara", "fa": "فارسی", "fr" : "Français", "he" : "עברית", "hu": "magyar", "it": "Italiano", "ja": "日本語","nl": "Nederlands", "pl": "Polski", "pt-br": "Português - Brasil", "pt": "Português - Portugal", "ro": "Română", "ru": "Русский", "sv": "Svenska", "tr" : "Türkçe", "zh-cn" : "简体中文", "zh-tw" : "正體中文"},
     "wsservice" : "moodle_mobile_app",
     "wsextservice" : "local_mobile",
-    "demo_sites": {"student": {"url": "http://school.demo.moodle.net", "username": "student", "password": "moodle"}, "teacher": {"url": "http://school.demo.moodle.net", "username": "teacher", "password": "moodle"}, "cva": {"url": "http://mm.cvaconsulting.com/moodle", "username": "student", "password": "student"}},
     "gcmpn": "694767596569",
     "customurlscheme": "moodlemobile"
+    "siteurl": "http://www.pathwaydirect.co.uk/",
 }
 );
